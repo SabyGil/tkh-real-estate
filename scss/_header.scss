@@ -1,0 +1,41 @@
+header {
+  border: 1px solid green;
+  background: 0 0;
+  // border: 0;
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+  display: block;
+  // border: 1px solid red;
+
+  overflow: hidden;
+  padding: 0 10px;
+.logo{
+  display: inline-block;
+    width: 15%;
+    margin-right: -4px;
+    border: 1px solid pink;
+}
+nav {
+  border: 1px solid blue;
+  display: inline-block;
+    width: 85%;
+    margin-right: -4px;
+    text-align: right;
+
+  ul {
+    display: block;
+      // padding: 0 15px;
+    li {
+      display: inline-block;
+      color: white;
+      padding: 15px;
+      // border: 1px solid blue;
+        &.nav-listings {
+          // float: right;
+        }
+      }
+
+    }
+  }
+}

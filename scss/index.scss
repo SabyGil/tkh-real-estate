@@ -1,0 +1,16 @@
+@import 'reset';
+@import 'variables';
+
+html, body {
+  font-family: 'Roboto', sans-serif;
+  box-sizing: border-box;
+  // background: purple;
+  overflow: hidden;
+}
+.app {
+  // height: 100%;
+  // border: 5px solid green;
+}
+
+@import 'home';
+@import 'header';
