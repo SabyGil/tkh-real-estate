@@ -1,6 +1,6 @@
 import React from 'react';
-// import { NavOne }  from './NavOne';
 import { NavTwo }  from './NavTwo';
+import { Header }  from './Header';
 
 class Home extends React.Component {
   constructor(){
@@ -11,6 +11,9 @@ class Home extends React.Component {
   }
   render(){
     return (
+      <div>
+      <Header />
+
       <div className="bg-container">
         <div className="black-screen">
           <div className='home-content-container'>
@@ -19,6 +22,7 @@ class Home extends React.Component {
           </div>
         </div>
       </div>
+    </div>
     );
   }
 }

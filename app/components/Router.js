@@ -1,16 +1,14 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-// import { Navigation }  from './Navigation';
+// import { Header }  from './Header';
 import Home from './Home';
-// import AddContact from './UserInput';
-// import Contacts  from './Contacts';
+import Listings from './Listings';
 
- const Routes = () => (
+const Routes = () => (
    <main>
-     {/* <Navigation /> */}
      <Switch>
-     <Route exact path='/' component={Home}/>
-       {/* <Route exact path='/contacts' component={Contacts} /> */} */}
+       <Route exact path='/' component={Home}/>
+       <Route exact path='/listings' component={Listings} />
      </Switch>
   </main>
 );

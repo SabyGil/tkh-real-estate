@@ -4,15 +4,16 @@ import App from './App';
 import '../scss/index.scss';
 // import { Provider } from 'react-redux';
 // import { createStore } from 'redux';
-import { BrowserRouter } from 'react-router-dom';
+// import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom'
 
 // import reducerContacts from './reducers/reducer_contacts';
 // let store = createStore(reducerContacts);
 
 ReactDOM.render(
-  <BrowserRouter>
+  <HashRouter>
     <App />
-  </BrowserRouter>,
+  </HashRouter>,
    document.getElementById('app')
 );
 
