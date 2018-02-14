@@ -2,8 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import '../scss/index.scss';
-// import { Provider } from 'react-redux';
-// import { createStore } from 'redux';
+import { Provider } from 'react-redux';
+import { createStore } from 'redux';
 // import { BrowserRouter } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom'
 
@@ -11,9 +11,11 @@ import { HashRouter } from 'react-router-dom'
 // let store = createStore(reducerContacts);
 
 ReactDOM.render(
-  <HashRouter>
-    <App />
-  </HashRouter>,
+  <Provider>
+    <HashRouter>
+      <App />
+    </HashRouter>
+  </Provider>,
    document.getElementById('app')
 );
 
