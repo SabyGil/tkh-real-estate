@@ -1,7 +1,7 @@
 import React from 'react';
 // import { Routes } from './components/Router';
 import Routes from './components/Router';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import { Header }  from './components/Header';
 
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
     super();
     this.state = {
       name: 'Joe',
-      // listingsData,
+      listingsData,
       city: 'All',
       homeType: 'All',
       bedrooms: '0',
@@ -21,7 +21,7 @@ class App extends React.Component {
       finished_basement: false,
       gym: false,
       swimming_pool: false,
-      // filteredData: listingsData,
+      filteredData: listingsData,
       populateFormsData: '',
       sorby: 'price-dsc',
       view: 'box',
@@ -79,6 +79,7 @@ class App extends React.Component {
     })
   }
   render(){
+    // let this.state.listingsData = this.props.listingsData; 
     return (
       <div className='app'>
         {/* <section id='content-area'>
@@ -86,15 +87,17 @@ class App extends React.Component {
           <Listings />
         </section> */}
         <Routes />
+
       </div>
     );
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     listings: state.listings
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    listingsData: state.listingsData
+  };
+}
+export default connect(mapStateToProps)(App);
 
-export default App;
+// export default App;

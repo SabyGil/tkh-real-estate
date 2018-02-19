@@ -1,5 +1,5 @@
 
-export default function () {
+export default () => {
   return [
     {
       address: '20-34 grand ave',

@@ -1,7 +1,7 @@
 import React from 'react';
 import HeaderTwo  from './HeaderTwo';
 import Filter from './Filter';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 
 class Listings extends React.Component {
   constructor(){
@@ -167,11 +167,12 @@ class Listings extends React.Component {
   }
 }
 
-// function mapStateToProps(state) {
-//   return {
-//     listings: state.listings //books reducer is returning this value
-//   };
-// }
+function mapStateToProps(state) {
+  return {
+    listingsData: state.listingsData
+  };
+}
+//books reducer is returning this value
 
-// export default connect(mapStateToProps)(Listings);
-export default Listings;
+export default connect(mapStateToProps)(Listings);
+// export default Listings;

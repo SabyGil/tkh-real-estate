@@ -2,7 +2,7 @@ import { combineReducers } from 'redux';
 import ListingsReducer from './reducer_listings_data';
 
 const rootReducer = combineReducers({
-  // listings: ListingsReducer
+  listingsData: ListingsReducer
 });
 
 export default rootReducer;
