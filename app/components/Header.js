@@ -4,14 +4,16 @@ import { NavLink } from 'react-router-dom';
 export class Header extends React.Component {
   render(){
     return(
-      <div className='main-header'>
+      <div className='container'>
         <header>
-          <div className='logo'>
-            <NavLink exact to='/'>
-                Home
-            </NavLink>
+          <div className='left-menu'>
+            <div className='logo'>
+              <NavLink exact to='/'>
+                  LOGO
+              </NavLink>
+            </div>
           </div>
-          <div className='nav-container'>
+          <div className='right-menu'>
             <NavLink exact to='/listings'>
               Listings
             </NavLink>

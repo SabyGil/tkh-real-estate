@@ -19,8 +19,6 @@ class HeaderTwo extends React.Component {
           </div>
 
         <nav>
-          <a href="#">create ads</a>
-          <a href="#">About Us</a>
           <a href="#">Log In</a>
           <a href="#" className="register-btn">Register</a>
         </nav>

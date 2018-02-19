@@ -11,18 +11,13 @@ class Home extends React.Component {
   }
   render(){
     return (
-      <div>
+      <div className="landing-page-bg">
       <Header />
-
-      <div className="bg-container">
-        <div className="black-screen">
-          <div className='home-content-container'>
-            <h1>Welcome to my Real Estate App</h1>
-            <NavTwo />
-          </div>
+        <div className='home-content-container'>
+          <h1>Welcome to my Real Estate App</h1>
+          <NavTwo />
         </div>
       </div>
-    </div>
     );
   }
 }
