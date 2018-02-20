@@ -3,6 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 // import { Header }  from './Header';
 import Home from './Home';
 import Listings from './Listings';
+// import { connect } from 'react-redux';
 
 const Routes = () => (
    <main>
@@ -12,5 +13,9 @@ const Routes = () => (
      </Switch>
   </main>
 );
+
+// function mapStateToProps(state) {
+//
+// }
 
 export default Routes;

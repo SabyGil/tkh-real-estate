@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 // import Full from './containers/Full';
 import '../scss/index.scss';
+// import { HashRouter } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
 
 import { Provider } from 'react-redux';
@@ -17,9 +18,9 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 // store={createStoreWithMiddleware(reducers)}
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers)}>
+  <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <HashRouter>
-      <App store={store}/>
+      <App />
     </HashRouter>
   </Provider>,
    document.getElementById('app')

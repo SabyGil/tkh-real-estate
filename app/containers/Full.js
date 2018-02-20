@@ -14,7 +14,7 @@ class Full extends React.Component {
       <div className="">
         {/* <HeaderTwo /> */}
         <div className='app-body'>
-          <Routes />
+          {/* <Routes /> */}
         </div>
       </div>
     )

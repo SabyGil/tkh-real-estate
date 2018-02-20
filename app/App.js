@@ -3,13 +3,14 @@ import React from 'react';
 import Routes from './components/Router';
 import { connect } from 'react-redux';
 // import { Header }  from './components/Header';
+// import listingsData from './components/data/listingsData';
 
 class App extends React.Component {
   constructor () {
     super();
     this.state = {
       name: 'Joe',
-      listingsData,
+      // listingsData,
       city: 'All',
       homeType: 'All',
       bedrooms: '0',
@@ -21,7 +22,7 @@ class App extends React.Component {
       finished_basement: false,
       gym: false,
       swimming_pool: false,
-      filteredData: listingsData,
+      // filteredData: listingsData,
       populateFormsData: '',
       sorby: 'price-dsc',
       view: 'box',
@@ -78,8 +79,45 @@ class App extends React.Component {
       filteredData: newData
     })
   }
+  populateForms(){
+  //City
+  let cities = this.state.listingsData.map((item) => {
+    return item.city
+  })
+  cities = new Set(cities) //only unique
+  cities = [...cities]
+
+  cities = cities.sort()
+
+  //homeType
+  let homeTypes = this.state.listingsData.map((item) => {
+    return item.homeType
+  })
+  homeTypes = new Set(homeTypes)
+  homeTypes = [...homeTypes]
+
+  homeTypes = homeTypes.sort()
+
+
+  //Bedrooms
+  let bedrooms = this.state.listingsData.map((item) => {
+    return item.city
+  })
+  bedrooms = new Set(bedrooms)
+  bedrooms = [...bedrooms]
+
+  this.setState({
+    populateFormsData: {
+      homeTypes,
+      bedrooms,
+      cities
+    }
+  }, () => {
+    console.log(this.state)
+  })
+}
   render(){
-    // let this.state.listingsData = this.props.listingsData; 
+    // let listingsData = this.props.listingsData;
     return (
       <div className='app'>
         {/* <section id='content-area'>
@@ -87,17 +125,21 @@ class App extends React.Component {
           <Listings />
         </section> */}
         <Routes />
-
+        {/* {this.props.listingsData.map((listing, i) => {
+          return (
+            <span key={listing.i}>{listing.city}</span>
+          )
+        })} */}
       </div>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    listingsData: state.listingsData
-  };
-}
-export default connect(mapStateToProps)(App);
+// function mapStateToProps(state) {
+//   return {
+//     listingsData: state.listingsData
+//   };
+// }
+// export default connect(mapStateToProps)(App);
 
-// export default App;
+export default App;

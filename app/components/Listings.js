@@ -108,11 +108,17 @@ class Listings extends React.Component {
 }
   render(){
     return (
+
       <div>
         <HeaderTwo />
         <div id='content-area'>
         <Filter />
         <section id="listings">
+          {/* {this.props.listingsData.map((listing, i) => {
+            return (
+              <span key={listing.i}>{listing.city}</span>
+            )
+          })} */}
           <section className='search-area'>
             <input type='text' name='search'
               // onChange={this.props.change}
