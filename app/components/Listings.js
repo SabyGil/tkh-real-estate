@@ -2,28 +2,14 @@ import React from 'react';
 import HeaderTwo  from './HeaderTwo';
 import Filter from './Filter';
 import { connect } from 'react-redux';
+import { filterListings } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 class Listings extends React.Component {
   constructor(){
     super();
     this.state = {
-      // name: 'Joe',
-      // city: 'All',
-      // homeType: 'All',
-      // bedrooms: '0',
-      // min_price: 0,
-      // max_price: 10000000,
-      // min_floor_space: 0,
-      // max_floor_space: 50000,
-      // elevator: false,
-      // finished_basement: false,
-      // gym: false,
-      // swimming_pool: false,
-      // populateFormsData: '',
-      // sorby: 'price-dsc',
-      // view: 'box',
-      // search: ''
-      // filteredData: listingsData
+  
 
     }
     // this.change = this.change.bind(this);
@@ -139,10 +125,10 @@ class Listings extends React.Component {
       <div>
         <HeaderTwo />
         <div id='content-area'>
-        <Filter change={this.props.change}
+        {/* <Filter change={this.props.change}
           globalState={this.props.globalState}
           populateAction={this.props.populateAction}
-        />
+        /> */}
         <section id="listings">
           {/* {this.props.listingsData.map((listing, i) => {
             return (
@@ -208,7 +194,10 @@ function mapStateToProps(state) {
     listingsData: state.listingsData
   };
 }
-//books reducer is returning this value
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ filterListings: filterListings }, dispatch);
+}
 
 export default connect(mapStateToProps)(Listings);
 // export default Listings;
