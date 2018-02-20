@@ -9,17 +9,144 @@ class Listings extends React.Component {
   constructor(){
     super();
     this.state = {
-  
+      name: 'Joe',
+      // listingsData,
+      city: 'All',
+      homeType: 'All',
+      bedrooms: '0',
+      min_price: 0,
+      max_price: 10000000,
+      min_floor_space: 0,
+      max_floor_space: 50000,
+      elevator: false,
+      finished_basement: false,
+      gym: false,
+      swimming_pool: false,
+      // filteredData: listingsData,
+      populateFormsData: '',
+      sorby: 'price-dsc',
+      view: 'box',
+      search: ''
 
     }
-    // this.change = this.change.bind(this);
-    // this.populateForms = this.populateForms.bind(this);
-    // this.changeView = this.changeView.bind(this);
+    this.change = this.change.bind(this);
+    this.populateForms = this.populateForms.bind(this);
+    this.changeView = this.changeView.bind(this);
     this.loopListings = this.loopListings.bind(this);
   }
+  // componentWillMount(){
+  //     let listingsData = this.props.listingsData.sort((a, b) => {
+  //       return a.price - b.price
+  //     })
+  //     this.setState({
+  //       listingsData
+  //     })
+  //   }
+    change(event){
+      let name = event.target.name;
+      let value = (event.target.type === 'checkbox') ? event.target.value : event.target.value
+      this.setState({
+        [name]: value
+      },() => {
+        console.log(this.state)
+        this.filteredData()
+      })
+    }
+    changeView(viewName){
+      this.setState({
+        view: viewName
+      })
+    }
+
+    filteredData(){
+      var newData = this.props.listingsData.filter((item) => {
+        return item.price >= this.state.min_price && item.price <=
+        this.state.max_price && item.floorSpace >= this.state.min_floor_space &&
+        item.floorSpace <= this.state.max_floor_space && item.rooms >= this.state.bedrooms
+      })
+      if(this.state.city != 'All'){
+        newData = newData.filter((item) =>{
+          return item.city == this.state.city
+        })
+      }
+
+      if(this.state.homeType != 'All'){
+        newData = newData.filter((item) =>{
+          return item.homeType == this.state.homeType
+        })
+      }
+
+      if(this.state.sortby == 'price-dsc'){
+        newData = newData.sort((a, b) => {
+          return a.price - b.price
+        })
+      }
+
+      if(this.state.sortby == 'price-asc'){
+        newData = newData.sort((a, b) => {
+          return b.price - a.price
+        })
+      }
+
+      if(this.state.search != ''){
+        newData = newData.filter((item) => {
+          let city = item.city.toLowerCase();
+          let searchText = this.state.search.toLowerCase();
+          let n = city.match(searchText);
+
+          if(n != null){
+            return true
+          }
+        })
+      }
+
+      this.setState({
+        filteredData: newData
+      })
+    }
+
+    populateForms(){
+      //City
+      let cities = this.props.listingsData.map((item) => {
+        return item.city
+      })
+      cities = new Set(cities) //only unique
+      cities = [...cities]
+
+      cities = cities.sort()
+
+      //homeType
+      let homeTypes = this.props.listingsData.map((item) => {
+        return item.homeType
+      })
+      homeTypes = new Set(homeTypes)
+      homeTypes = [...homeTypes]
+
+      homeTypes = homeTypes.sort()
+
+
+      //Bedrooms
+      let bedrooms = this.props.listingsData.map((item) => {
+        return item.city
+      })
+      bedrooms = new Set(bedrooms)
+      bedrooms = [...bedrooms]
+
+      this.setState({
+        populateFormsData: {
+          homeTypes,
+          bedrooms,
+          cities
+        }
+      }, () => {
+        console.log(this.state)
+      })
+    }
+  //----
+
   loopListings () {
   let { listingsData } = this.props;
-  let filteredData = this.props.listingsData;
+  // let filteredData = this.props.listingsData;
   if(listingsData === undefined || listingsData.length == 0){
     return 'Sorry your filter did not match any listing'
   }
@@ -116,19 +243,18 @@ class Listings extends React.Component {
 }
   render(){
     // let { listingsData } = this.props;
-    let listingsData = this.props.listingsData;
+    // let listingsData = this.props.listingsData;
     // let filteredData = listingsData;
     // debugger
     // globalState.view
     return (
-
       <div>
         <HeaderTwo />
         <div id='content-area'>
-        {/* <Filter change={this.props.change}
+        <Filter change={this.props.change}
           globalState={this.props.globalState}
           populateAction={this.props.populateAction}
-        /> */}
+        />
         <section id="listings">
           {/* {this.props.listingsData.map((listing, i) => {
             return (
@@ -141,7 +267,7 @@ class Listings extends React.Component {
             />
           </section>
 
-          {/* <section className='sortby-area'>
+          <section className='sortby-area'>
             <div className='results'>
               {this.props.globalState.filteredData.length}
               results found
@@ -162,7 +288,7 @@ class Listings extends React.Component {
                   ></i>
               </div>
             </div>
-          </section> */}
+          </section>
 
           <section className='listings-results'>
             <div className='row'>
@@ -199,5 +325,5 @@ function mapDispatchToProps(dispatch){
   return bindActionCreators({ filterListings: filterListings }, dispatch);
 }
 
-export default connect(mapStateToProps)(Listings);
+export default connect(mapStateToProps, mapDispatchToProps)(Listings);
 // export default Listings;

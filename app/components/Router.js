@@ -6,20 +6,21 @@ import Listings from './Listings';
 // import { connect } from 'react-redux';
 
 const Routes = () => (
+
    <main>
      <Switch>
        <Route exact path='/' component={Home}/>
-       <Route exact path='/listings'  render={(...props)=><Listings change={props.change}
+       {/* <Route exact path='/listings'  render={(...props)=><Listings change={props.change}
          globalState={props.globalState}
          changeView={props.changeView}
          populateAction={props.populateAction}
-        />} />
+        />} /> */}
         {/* <Route  path='/filter'  render={(...props)=><Filter change={props.change}
           globalState={props.globalState}
           changeView={props.changeView}
           populateAction={props.populateAction}
          />} /> */}
-       {/* <Route exact path='/listings' component={Listings} /> */}
+       <Route exact path='/listings' component={Listings} />
      </Switch>
   </main>
 );
