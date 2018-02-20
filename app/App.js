@@ -28,10 +28,10 @@ class App extends React.Component {
       view: 'box',
       search: ''
     }
-    // this.change = this.change.bind(this);
+    this.change = this.change.bind(this);
     this.filteredData = this.filteredData.bind(this);
-    // this.populateForms = this.populateForms.bind(this);
-    // this.changeView = this.changeView.bind(this);
+    this.populateForms = this.populateForms.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
   filteredData(){
     var newData = this.state.listingsData.filter((item) => {
@@ -118,13 +118,17 @@ class App extends React.Component {
 }
   render(){
     // let listingsData = this.props.listingsData;
+    // let globalState = this.state;
+    // let
     return (
       <div className='app'>
         {/* <section id='content-area'>
           <Filter />
           <Listings />
         </section> */}
-        <Routes />
+        <Routes change={this.change}
+          globalState={this.state}
+          changeView={this.changeView}/>
         {/* {this.props.listingsData.map((listing, i) => {
           return (
             <span key={listing.i}>{listing.city}</span>

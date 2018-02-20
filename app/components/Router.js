@@ -9,7 +9,10 @@ const Routes = () => (
    <main>
      <Switch>
        <Route exact path='/' component={Home}/>
-       <Route exact path='/listings' component={Listings} />
+       <Route exact path='/listings'  render={()=><Listings  change={this.change}
+         globalState={this.props.state}
+         changeView={this.props.changeView}/>} />
+       {/* <Route exact path='/listings' component={Listings} /> */}
      </Switch>
   </main>
 );
