@@ -273,7 +273,7 @@ const mapStateToProps = (state) => {
   return {
     listingsData: state.listingsData,
     filteredData: state.filteredData,
-    globalState: state.defaultData
+    globalState: state.globalState
   };
 };
 
