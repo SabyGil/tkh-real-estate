@@ -2,21 +2,29 @@ import React from 'react';
 import HeaderTwo  from './HeaderTwo';
 import Filter from './Filter';
 import { connect } from 'react-redux';
+import { filterListings } from '../actions/index';
+import { bindActionCreators } from 'redux';
 
 class Listings extends React.Component {
   constructor(){
     super();
     this.state = {
 
+
     }
+    // this.change = this.change.bind(this);
+    // this.populateForms = this.populateForms.bind(this);
+    // this.changeView = this.changeView.bind(this);
+    this.loopListings = this.loopListings.bind(this);
   }
   loopListings () {
   let { listingsData } = this.props;
+  let filteredData = this.props.listingsData;
   if(listingsData === undefined || listingsData.length == 0){
     return 'Sorry your filter did not match any listing'
   }
   return listingsData.map((listing, index) => {
-    if(this.props.globalState.view == 'box') {
+    if(this.props.view === 'box') {
       //THIS IS BOX VIEW
       return (<div className='col-md-3' key={index}>
         <div className='listing'>
@@ -107,12 +115,18 @@ class Listings extends React.Component {
 
 }
   render(){
+    // let { listingsData } = this.props;
+    // let listingsData = this.props.listingsData;
+    // let filteredData = listingsData;
+    debugger
     return (
-
       <div>
         <HeaderTwo />
         <div id='content-area'>
-        <Filter />
+        <Filter change={this.props.change}
+          globalState={this.props.globalState}
+          populateAction={this.props.populateAction}
+        />
         <section id="listings">
           {/* {this.props.listingsData.map((listing, i) => {
             return (
@@ -121,37 +135,37 @@ class Listings extends React.Component {
           })} */}
           <section className='search-area'>
             <input type='text' name='search'
-              // onChange={this.props.change}
+              onChange={this.props.change}
             />
           </section>
 
-          <section className='sortby-area'>
+          {/* <section className='sortby-area'>
             <div className='results'>
-              {/* {this.props.globalState.filteredData.length}  */}
+              {this.props.globalState.filteredData.length}
               results found
             </div>
             <div className='sort-options'>
               <select name='sortby' className='sortby'
-                // onChange={this.props.change}
+                onChange={this.props.change}
                 >
                 <option value='price-dsc'>Lowest Price</option>
                 <option value='price-asc'>Highest Price</option>
               </select>
               <div className='view'>
                 <i className='fa fa-th-list' aria-hidden='true'
-                  // onClick={this.props.changeView.bind(null, 'long')}
+                  onClick={this.props.changeView.bind(null, 'long')}
                   ></i>
                 <i className='fa fa-th' aria-hidden='true'
-                  // onClick={this.props.changeView.bind(null, 'box')}
+                  onClick={this.props.changeView.bind(null, 'box')}
                   ></i>
               </div>
             </div>
-          </section>
+          </section> */}
 
           <section className='listings-results'>
             <div className='row'>
 
-            {/* { this.loopListings() } */}
+            { this.loopListings() }
             </div>
           </section>
 
@@ -175,10 +189,14 @@ class Listings extends React.Component {
 
 function mapStateToProps(state) {
   return {
-    listingsData: state.listingsData
+    listingsData: state.listingsData,
+    filteredData: state.listingsData
   };
 }
-//books reducer is returning this value
+
+function mapDispatchToProps(dispatch){
+  return bindActionCreators({ filterListings: filterListings }, dispatch);
+}
 
 export default connect(mapStateToProps)(Listings);
 // export default Listings;

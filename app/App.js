@@ -130,7 +130,7 @@ class App extends React.Component {
             <span key={listing.i}>{listing.city}</span>
           )
         })} */}
-      </div>
+        </div>
     );
   }
 }

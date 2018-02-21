@@ -14,7 +14,7 @@ class Home extends React.Component {
       <div className="landing-page-bg">
       <Header />
         <div className='home-content-container'>
-          <h1>Welcome to my Real Estate App</h1>
+          <h1>Welcolme To The Really, REAL Realtors</h1>
           <NavTwo />
         </div>
       </div>
