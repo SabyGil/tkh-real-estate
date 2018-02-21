@@ -28,11 +28,56 @@ class App extends React.Component {
       view: 'box',
       search: ''
     }
-    // this.change = this.change.bind(this);
+    this.change = this.change.bind(this);
     this.filteredData = this.filteredData.bind(this);
-    // this.populateForms = this.populateForms.bind(this);
-    // this.changeView = this.changeView.bind(this);
+    this.populateForms = this.populateForms.bind(this);
+    this.changeView = this.changeView.bind(this);
+    this.setDefaultState = this.setDefaultState.bind(this);
   }
+//   componentWillMount(){
+//   let listingsData = this.props.listingsData.sort((a, b) => {
+//     return a.price - b.price
+//   })
+//   this.setState({
+//     listingsData
+//   })
+// }
+change(event){
+  let name = event.target.name;
+  let value = (event.target.type === 'checkbox') ? event.target.value : event.target.value
+  this.setState({
+    [name]: value
+  },() => {
+    console.log(this.state)
+    this.filteredData()
+  })
+}
+changeView(viewName){
+  this.setState({
+    view: viewName
+  })
+}
+  setDefaultState(){
+    this.props.dispatch({
+     type: 'ADD_INFO',
+     city: this.state.city,
+     homeType: this.state.homeType,
+     bedrooms: this.state.bedrooms,
+     min_price: this.state.min_price,
+     max_price: this.state.max_price,
+     min_floor_space: this.state.floor_space,
+     max_floor_space: this.state.max_floor_space,
+     elevator: this.state.elevator,
+     finished_basement: this.state.finished_basement,
+     gym: this.state.gym,
+     swimming_pool: this.state.swimming_pool,
+     populateFormsData: this.state.populateFormsData,
+     sorby: this.state.sortby,
+     view: this.state.view,
+     search: this.state.search
+   })
+  }
+
   filteredData(){
     var newData = this.state.listingsData.filter((item) => {
       return item.price >= this.state.min_price && item.price <=
@@ -118,18 +163,22 @@ class App extends React.Component {
 }
   render(){
     // let listingsData = this.props.listingsData;
+    // debugger
     return (
       <div className='app'>
-        {/* <section id='content-area'>
-          <Filter />
-          <Listings />
-        </section> */}
-        <Routes />
+
+        <Routes change={this.change}
+            changeView={this.changeView}
+            populateAction = { this.populateForms }
+        />
+
         {/* {this.props.listingsData.map((listing, i) => {
           return (
             <span key={listing.i}>{listing.city}</span>
           )
         })} */}
+        {/* {(event) => this.setDefaultState(event)} */}
+        {this.setDefaultState()}
         </div>
     );
   }
@@ -141,5 +190,5 @@ class App extends React.Component {
 //   };
 // }
 // export default connect(mapStateToProps)(App);
-
-export default App;
+// export default App;
+export default connect(undefined)(App);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
+import Router from './components/Router';
 // import Full from './containers/Full';
 import '../scss/index.scss';
 // import { HashRouter } from 'react-router-dom';
@@ -20,7 +20,7 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <HashRouter>
-      <App />
+      <Router />
     </HashRouter>
   </Provider>,
    document.getElementById('app')

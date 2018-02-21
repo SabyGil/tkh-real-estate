@@ -12,11 +12,66 @@ class Listings extends React.Component {
 
 
     }
-    // this.change = this.change.bind(this);
-    // this.populateForms = this.populateForms.bind(this);
-    // this.changeView = this.changeView.bind(this);
+    this.change = this.change.bind(this);
+    this.populateForms = this.populateForms.bind(this);
+    this.changeView = this.changeView.bind(this);
     this.loopListings = this.loopListings.bind(this);
   }
+  change(event){
+    let name = event.target.name;
+    let value = (event.target.type === 'checkbox') ? event.target.value : event.target.value
+    this.setState({
+      [name]: value
+    },() => {
+      console.log(this.state)
+      this.filteredData()
+    })
+  }
+  changeView(viewName){
+    // this.setState({
+    //   view: viewName
+    // })
+    this.props.globalState.setState({
+      view: viewName
+    })
+  }
+  populateForms(){
+  //City
+  let cities = this.props.globalState.listingsData.map((item) => {
+    return item.city
+  })
+  cities = new Set(cities) //only unique
+  cities = [...cities]
+
+  cities = cities.sort()
+
+  //homeType
+  let homeTypes = this.props.globalState.listingsData.map((item) => {
+    return item.homeType
+  })
+  homeTypes = new Set(homeTypes)
+  homeTypes = [...homeTypes]
+
+  homeTypes = homeTypes.sort()
+
+
+  //Bedrooms
+  let bedrooms = this.props.globalState.listingsData.map((item) => {
+    return item.city
+  })
+  bedrooms = new Set(bedrooms)
+  bedrooms = [...bedrooms]
+
+  this.setState({
+    populateFormsData: {
+      homeTypes,
+      bedrooms,
+      cities
+    }
+  }, () => {
+    console.log(this.props.globalState)
+  })
+}
   loopListings () {
   let { listingsData } = this.props;
   let filteredData = this.props.listingsData;
@@ -118,14 +173,33 @@ class Listings extends React.Component {
     // let { listingsData } = this.props;
     // let listingsData = this.props.listingsData;
     // let filteredData = listingsData;
-    debugger
+//
+  // let globalState = this.props.globalState.map((val) => {
+  //   return val
+  // })
+//   [ city, homeType, bedrooms, min_price
+// , max_pric
+// , min_floor_space
+// , max_floor_space
+// , elevato
+// , finished_basement
+// , gym
+// , swimming_pool
+// , populateFormsDat
+// , sortby
+// , view
+// , search
+// , id ] =  this.props.globalState
+    // debugger
     return (
       <div>
+
         <HeaderTwo />
         <div id='content-area'>
-        <Filter change={this.props.change}
+        <Filter
+         change={this.props.change}
           globalState={this.props.globalState}
-          populateAction={this.props.populateAction}
+          populateAction={this.props.populateForms}
         />
         <section id="listings">
           {/* {this.props.listingsData.map((listing, i) => {
@@ -139,9 +213,9 @@ class Listings extends React.Component {
             />
           </section>
 
-          {/* <section className='sortby-area'>
+          <section className='sortby-area'>
             <div className='results'>
-              {this.props.globalState.filteredData.length}
+              {this.props.filteredData.length}
               results found
             </div>
             <div className='sort-options'>
@@ -151,16 +225,16 @@ class Listings extends React.Component {
                 <option value='price-dsc'>Lowest Price</option>
                 <option value='price-asc'>Highest Price</option>
               </select>
-              <div className='view'>
+              {/* <div className='view'>
                 <i className='fa fa-th-list' aria-hidden='true'
-                  onClick={this.props.changeView.bind(null, 'long')}
+                  onClick={this.props.globalState.changeView.bind(null, 'long')}
                   ></i>
                 <i className='fa fa-th' aria-hidden='true'
-                  onClick={this.props.changeView.bind(null, 'box')}
+                  onClick={this.props.globalState.changeView.bind(null, 'box')}
                   ></i>
-              </div>
+              </div> */}
             </div>
-          </section> */}
+          </section>
 
           <section className='listings-results'>
             <div className='row'>
@@ -187,16 +261,25 @@ class Listings extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
+// function mapStateToProps(state) {
+//   return {
+//     listingsData: state.listingsData,
+//     filteredData: state.filteredData,
+//
+//   };
+// }
+
+const mapStateToProps = (state) => {
   return {
     listingsData: state.listingsData,
-    filteredData: state.listingsData
+    filteredData: state.filteredData,
+    globalState: state.defaultData
   };
-}
+};
 
-function mapDispatchToProps(dispatch){
-  return bindActionCreators({ filterListings: filterListings }, dispatch);
-}
+// function mapDispatchToProps(dispatch){
+//   return bindActionCreators({ filterListings: filterListings }, dispatch);
+// }
 
 export default connect(mapStateToProps)(Listings);
 // export default Listings;
