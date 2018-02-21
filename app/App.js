@@ -4,35 +4,18 @@ import Routes from './components/Router';
 import { connect } from 'react-redux';
 // import { Header }  from './components/Header';
 // import listingsData from './components/data/listingsData';
+import { change } from './components/helperFunc/helperFunc';
 
 class App extends React.Component {
   constructor () {
     super();
     this.state = {
-      // name: 'Joe',
-      // // listingsData,
-      // city: 'All',
-      // homeType: 'All',
-      // bedrooms: '0',
-      // min_price: 0,
-      // max_price: 10000000,
-      // min_floor_space: 0,
-      // max_floor_space: 50000,
-      // elevator: false,
-      // finished_basement: false,
-      // gym: false,
-      // swimming_pool: false,
-      // // filteredData: listingsData,
-      // populateFormsData: '',
-      // sorby: 'price-dsc',
-      // view: 'box',
-      // search: ''
+
     }
     this.change = this.change.bind(this);
     this.filteredData = this.filteredData.bind(this);
     this.populateForms = this.populateForms.bind(this);
     this.changeView = this.changeView.bind(this);
-    this.setDefaultState = this.setDefaultState.bind(this);
   }
 //   componentWillMount(){
 //   let listingsData = this.props.listingsData.sort((a, b) => {
@@ -42,42 +25,14 @@ class App extends React.Component {
 //     listingsData
 //   })
 // }
-change(event){
-  let name = event.target.name;
-  let value = (event.target.type === 'checkbox') ? event.target.value : event.target.value
-  this.setState({
-    [name]: value
-  },() => {
-    console.log(this.state)
-    this.filteredData()
-  })
+changeListings(event){
+  change()
 }
 changeView(viewName){
   this.setState({
     view: viewName
   })
 }
-  // setDefaultState(){
-  //   this.props.dispatch({
-  //    type: 'ADD_INFO',
-  //    city: this.state.city,
-  //    homeType: this.state.homeType,
-  //    bedrooms: this.state.bedrooms,
-  //    min_price: this.state.min_price,
-  //    max_price: this.state.max_price,
-  //    min_floor_space: this.state.floor_space,
-  //    max_floor_space: this.state.max_floor_space,
-  //    elevator: this.state.elevator,
-  //    finished_basement: this.state.finished_basement,
-  //    gym: this.state.gym,
-  //    swimming_pool: this.state.swimming_pool,
-  //    populateFormsData: this.state.populateFormsData,
-  //    sorby: this.state.sortby,
-  //    view: this.state.view,
-  //    search: this.state.search
-  //  })
-  // }
-
 
   filteredData(){
     var newData = this.state.listingsData.filter((item) => {
@@ -168,18 +123,14 @@ changeView(viewName){
     return (
       <div className='app'>
 
-        <Routes change={this.change}
-            changeView={this.changeView}
-            populateAction = { this.populateForms }
-        />
-
+        <Routes />
         {/* {this.props.listingsData.map((listing, i) => {
           return (
             <span key={listing.i}>{listing.city}</span>
           )
         })} */}
         {/* {(event) => this.setDefaultState(event)} */}
-        {this.setDefaultState()}
+        {/* {this.setDefaultState()} */}
         </div>
     );
   }
@@ -190,6 +141,7 @@ changeView(viewName){
 //     listingsData: state.listingsData
 //   };
 // }
+
 // export default connect(mapStateToProps)(App);
-// export default App;
-export default connect(undefined)(App);
+export default App;
+// export default connect(undefined)(App);

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import Router from './components/Router';
+import App from './App';
 // import Full from './containers/Full';
 import '../scss/index.scss';
 // import { HashRouter } from 'react-router-dom';
@@ -18,14 +18,31 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 // store={createStoreWithMiddleware(reducers)}
 
 ReactDOM.render(
-  <Provider store={createStoreWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
+  <Provider store={createStoreWithMiddleware(reducers,
+    { globalState:
+      { city: 'All',
+      homeType: 'All',
+      bedrooms: '0',
+      min_price: 0,
+      max_price: 10000000,
+      min_floor_space: 0,
+      max_floor_space: 50000,
+      elevator: false,
+      finished_basement: false,
+      gym: false,
+      swimming_pool: false,
+      populateFormsData: '',
+      sorby: 'price-dsc',
+      view: 'box',
+      search: '' }
+    },
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <HashRouter>
-      <Router />
+      <App />
     </HashRouter>
   </Provider>,
    document.getElementById('app')
 );
-
 // ReactDOM.render(
 //   <BrowserRouter>
 //     <Provider store={store}>
