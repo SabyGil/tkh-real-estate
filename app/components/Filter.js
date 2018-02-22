@@ -116,9 +116,9 @@ export default class Filter extends Component {
     this.bedrooms =  this.bedrooms.bind(this);
   }
 
-  // componentWillMount(){
-  //   this.props.populateAction()
-  // }
+  componentWillMount(){
+    this.props.populateAction()
+  }
 
   cities () {
     //to destructure and shorten

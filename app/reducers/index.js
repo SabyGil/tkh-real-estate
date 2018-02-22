@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-// import ListingsReducer from './reducer_listings_data';
+import ListingsReducer from './reducer_listings_data';
 // import FilterReducer from './reducer_filter';
 // import DefaultData from './reducer_initial_state';
 // import DefaultData from './reducer_global_state';
@@ -7,7 +7,7 @@ import { combineReducers } from 'redux';
 import { globalState } from './reducer_practice';
 
 const rootReducer = combineReducers({
-  // listingsData: ListingsReducer,
+  listingsData: ListingsReducer,
   // filteredData: FilterReducer,
   // globalState: DefaultData
   globalState

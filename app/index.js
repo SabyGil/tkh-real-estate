@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './App';
-// import Full from './containers/Full';
+// import App from './App';
+import Routes  from './components/Router';
 import '../scss/index.scss';
 // import { HashRouter } from 'react-router-dom';
 import { HashRouter } from 'react-router-dom';
@@ -38,7 +38,7 @@ ReactDOM.render(
     },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <HashRouter>
-      <App />
+      <Routes />
     </HashRouter>
   </Provider>,
    document.getElementById('app')
