@@ -3,6 +3,7 @@ import HeaderTwo  from './HeaderTwo';
 import Filter from './Filter';
 import { connect } from 'react-redux';
 import { filterListings } from '../actions/index';
+import { populateForms } from './helperFunc/helperFunc';
 // import { bindActionCreators } from 'redux';
 
 class Listings extends React.Component {
@@ -60,40 +61,7 @@ class Listings extends React.Component {
   //------
   populateForms(){
       //City
-      let cities = this.state.listingsData.map((item) => {
-        return item.city
-      })
-      cities = new Set(cities) //only unique
-      cities = [...cities]
-
-      cities = cities.sort()
-
-      //homeType
-      let homeTypes = this.state.listingsData.map((item) => {
-        return item.homeType
-      })
-      homeTypes = new Set(homeTypes)
-      homeTypes = [...homeTypes]
-
-      homeTypes = homeTypes.sort()
-
-
-      //Bedrooms
-      let bedrooms = this.state.listingsData.map((item) => {
-        return item.city
-      })
-      bedrooms = new Set(bedrooms)
-      bedrooms = [...bedrooms]
-
-      this.setState({
-        populateFormsData: {
-          homeTypes,
-          bedrooms,
-          cities
-        }
-      }, () => {
-        console.log(this.state)
-      })
+    populateFormsListings()
     }
 //----
 filteredData(){
@@ -251,11 +219,7 @@ filteredData(){
 
         <HeaderTwo />
         <div id='content-area'>
-        <Filter
-          change={this.change}
-           globalState={this.props.globalState}
-           populateActions={  this.populateForms }
-        />
+
         <section id="listings">
           <section className='search-area'>
             <input type='text' name='search'

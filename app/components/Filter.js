@@ -1,6 +1,9 @@
 import React, { Component} from 'react'
+import { connect } from 'react-redux';
+import { change } from './helperFunc/helperFunc';
+import { populateForms as populateActions } from './helperFunc/helperFunc';
 
-export default class Filter extends Component {
+class Filter extends Component {
   constructor () {
     super()
     this.state = {
@@ -12,7 +15,9 @@ export default class Filter extends Component {
   }
 
   componentDidMount(){
-    this.props.populateActions()
+    // populateActions()
+
+
   }
 
   cities () {
@@ -52,6 +57,10 @@ export default class Filter extends Component {
     }
   }
 
+  changeF () {
+    change()
+  }
+
   render () {
     // debugger
     return (
@@ -59,7 +68,7 @@ export default class Filter extends Component {
         <div className='inside'>
           <h4>Filter</h4>
           <label htmlFor='city'>City</label>
-          <select name='city' className='filters city' onChange={this.props.change}>
+          <select name='city' className='filters city' onChange={this.props.change }>
             <option value='All'>All</option>
             {this.cities()}
           </select>
@@ -123,3 +132,13 @@ export default class Filter extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    filteredData: state.filteredData,
+    listingsData: state.listingsData,
+    globalState: state.globalState
+  };
+};
+
+export default connect(mapStateToProps)(Filter);

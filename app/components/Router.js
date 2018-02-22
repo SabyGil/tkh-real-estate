@@ -18,22 +18,25 @@ const route = [
 ];
 const Routes = () => (
  <main>
-   <Switch>
-     <Route exact path="/" component={Home}/>
-     {route.map((route, index) => (
+   {/* <Switch> */}
+      <Route exact path="/" component={Home}/>
+   {route.map((route, index) => (
      <Route
-       key={index}
-       path={route.path}
-       exact={route.exact}
-       component={route.sidebar}
-
-       key={index}
-       path={route.path}
-       exact={route.exact}
-       component={route.main}
-     />
-      ))}
-  </Switch>
+     key={index}
+     path={route.path}
+     exact={route.exact}
+     component={route.sidebar}
+   />
+    ))}
+    {route.map((route, index) => (
+      <Route
+      key={index}
+      path={route.path}
+      exact={route.exact}
+      component={route.main}
+    />
+     ))}
+   {/* </Switch> */}
  </main>
 );
 
