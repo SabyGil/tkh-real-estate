@@ -24,8 +24,6 @@
     padding: 20px;
     // padding: 20px 50px;
     max-width: 300px;
-    border: 1px solid green;
-
   }
   h4 {
     font-size: .9rem;
@@ -78,11 +76,10 @@
 
 #listings {
   width: 70%;
-  border: 1px solid red;
   float: left;
   display: inline-block;
   padding: 15px;
-  background-color:  $offWhite;
+  background-color: $offWhite;
   .search-area {
     input[type='text']{
       width: 70%;
@@ -234,7 +231,7 @@
         .location {
           font-size: 1.2rem;
           display: block;
-          color: $lightGrey;
+          color: $darkGrey;
         }
       }
     }

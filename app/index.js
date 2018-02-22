@@ -19,23 +19,23 @@ const createStoreWithMiddleware = applyMiddleware()(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers,
-    { globalState:
-      { city: 'All',
-      homeType: 'All',
-      bedrooms: '0',
-      min_price: 0,
-      max_price: 10000000,
-      min_floor_space: 0,
-      max_floor_space: 50000,
-      elevator: false,
-      finished_basement: false,
-      gym: false,
-      swimming_pool: false,
-      populateFormsData: '',
-      sorby: 'price-dsc',
-      view: 'box',
-      search: '' }
-    },
+    // { globalState:
+    //   { city: 'All',
+    //   homeType: 'All',
+    //   bedrooms: '0',
+    //   min_price: 0,
+    //   max_price: 10000000,
+    //   min_floor_space: 0,
+    //   max_floor_space: 50000,
+    //   elevator: false,
+    //   finished_basement: false,
+    //   gym: false,
+    //   swimming_pool: false,
+    //   populateFormsData: '',
+    //   sorby: 'price-dsc',
+    //   view: 'box',
+    //   search: '' }
+    // },
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <HashRouter>
       <Routes />

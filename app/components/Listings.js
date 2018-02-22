@@ -3,7 +3,7 @@ import HeaderTwo  from './HeaderTwo';
 import Filter from './Filter';
 import { connect } from 'react-redux';
 import { filterListings } from '../actions/index';
-import { bindActionCreators } from 'redux';
+// import { bindActionCreators } from 'redux';
 
 class Listings extends React.Component {
   constructor(){
@@ -11,14 +11,14 @@ class Listings extends React.Component {
     this.state = {
       // view: '',
       // filteredData: '',
-      // populateFormsData: ''
-      listingsData: ''
+      // populateFormsData: '',
+      // listingsData: ''
     }
     this.change = this.change.bind(this);
-    this.populateForms = this.populateForms.bind(this);
     this.changeView = this.changeView.bind(this);
     this.loopListings = this.loopListings.bind(this);
     this.filteredData = this.filteredData.bind(this);
+    this.populateForms = this.populateForms.bind(this);
   }
   componentWillMount(){
     let listingsData = this.props.listingsData.sort((a, b) => {
@@ -31,11 +31,13 @@ class Listings extends React.Component {
     })
   }
   componentDidMount(){
-    let filteredData = this.props.listingsData
+    // let filteredData = this.props.globalState
+    let { globalState } = this.props
     this.setState({
-    filteredData
+    // filteredData,
+    globalState
   }, ()=> {
-    console.log(this.state + 'hello')
+    console.log(this.state + 'hell')
   })
 
    }
@@ -95,50 +97,51 @@ class Listings extends React.Component {
     }
 //----
 filteredData(){
-  var newData = this.props.listingsData.filter((item) => {
-    return item.price >= this.props.globalState.min_price && item.price <=
-    this.props.globalState.max_price && item.floorSpace >= this.props.globalState.min_floor_space &&
-    item.floorSpace <= this.props.globalState.max_floor_space && item.rooms >= this.props.globalState.bedrooms
-  })
-  if(this.props.globalState.city != 'All'){
-    newData = newData.filter((item) =>{
-      return item.city == this.props.city
+    var newData = this.state.listingsData.filter((item) => {
+      return item.price >= this.state.min_price && item.price <=
+      this.state.max_price && item.floorSpace >= this.state.min_floor_space &&
+      item.floorSpace <= this.state.max_floor_space && item.rooms >= this.state.bedrooms
+    })
+    if(this.state.city != 'All'){
+      newData = newData.filter((item) =>{
+        return item.city == this.state.city
+      })
+    }
+
+    if(this.state.homeType != 'All'){
+      newData = newData.filter((item) =>{
+        return item.homeType == this.state.homeType
+      })
+    }
+
+    if(this.state.sortby == 'price-dsc'){
+      newData = newData.sort((a, b) => {
+        return a.price - b.price
+      })
+    }
+
+    if(this.state.sortby == 'price-asc'){
+      newData = newData.sort((a, b) => {
+        return b.price - a.price
+      })
+    }
+
+    if(this.state.search != ''){
+      newData = newData.filter((item) => {
+        let city = item.city.toLowerCase();
+        let searchText = this.state.search.toLowerCase();
+        let n = city.match(searchText);
+
+        if(n != null){
+          return true
+        }
+      })
+    }
+
+    this.setState({
+      filteredData: newData
     })
   }
-
-  if(this.props.globalState.homeType != 'All'){
-    newData = newData.filter((item) =>{
-      return item.homeType == this.props.homeType
-    })
-  }
-
-  if(this.props.globalState.sortby == 'price-dsc'){
-    newData = newData.sort((a, b) => {
-      return a.price - b.price
-    })
-  }
-
-  if(this.props.globalState.sortby == 'price-asc'){
-    newData = newData.sort((a, b) => {
-      return b.price - a.price
-    })
-  }
-
-  if(this.props.globalState.search !== ''){
-    newData = newData.filter((item) => {
-      let city = item.city.toLowerCase();
-      let searchText = this.props.globalState.search.toLowerCase();
-      let n = city.match(searchText);
-
-      if(n !== null){
-        return true
-      }
-    })
-  }
-  this.setState({
-    filteredData: newData
-  })
-}
   loopListings () {
   let { listingsData } = this.props;
   // let filteredData = this.props.listingsData;
@@ -239,7 +242,7 @@ filteredData(){
   render(){
     // let { listingsData } = this.props;
     // let listingsData = this.props.listingsData;
-    // let filteredData = this.props.listingsData;
+    let filteredData = this.props.listingsData;
 //
 
     // debugger
@@ -249,16 +252,11 @@ filteredData(){
         <HeaderTwo />
         <div id='content-area'>
         <Filter
-         change={this.change}
-          globalState={this.props.globalState}
-          populateAction={this.populateForms}
+          change={this.change}
+           globalState={this.props.globalState}
+           populateActions={  this.populateForms }
         />
         <section id="listings">
-          {/* {this.props.listingsData.map((listing, i) => {
-            return (
-              <span key={listing.i}>{listing.city}</span>
-            )
-          })} */}
           <section className='search-area'>
             <input type='text' name='search'
               onChange={this.change}
@@ -267,12 +265,11 @@ filteredData(){
 
           <section className='sortby-area'>
             <div className='results'>
-              {this.filteredData.length}
-              results found
+              {this.props.filteredData.length}
+              &nbsp; results found
             </div>
             <div className='sort-options'>
               <select name='sortby' className='sortby'
-                // onChange={this.props.change}
                 onChange={this.change}
                 >
                 <option value='price-dsc'>Lowest Price</option>
@@ -324,8 +321,8 @@ filteredData(){
 
 const mapStateToProps = (state) => {
   return {
+    filteredData: state.filteredData,
     listingsData: state.listingsData,
-    // filteredData: state.filteredData,
     globalState: state.globalState
   };
 };
