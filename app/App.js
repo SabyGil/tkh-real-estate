@@ -1,17 +1,19 @@
 import React from 'react';
 // import { Routes } from './components/Router';
-import Routes from './components/Router';
+// import Routes from './components/Router';
 // import { connect } from 'react-redux';
-import { Header }  from './components/Header';
+import HeaderTwo   from './components/HeaderTwo';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import Filter from './components/Filter';
+import listingsData from './components/data/listingsData';
+
 
 class App extends React.Component {
   constructor () {
     super();
     this.state = {
-      // listingsData,
+      listingsData,
       city: 'All',
       homeType: 'All',
       bedrooms: '0',
@@ -23,17 +25,41 @@ class App extends React.Component {
       finished_basement: false,
       gym: false,
       swimming_pool: false,
-      // filteredData: listingsData,
+      filteredData: listingsData,
       populateFormsData: '',
       sorby: 'price-dsc',
       view: 'box',
       search: ''
     }
-    // this.change = this.change.bind(this);
+    this.change = this.change.bind(this);
     this.filteredData = this.filteredData.bind(this);
-    // this.populateForms = this.populateForms.bind(this);
-    // this.changeView = this.changeView.bind(this);
+    this.populateForms = this.populateForms.bind(this);
+    this.changeView = this.changeView.bind(this);
   }
+  componentWillMount(){
+    let listingsData = this.state.listingsData.sort((a, b) => {
+      return a.price - b.price
+    })
+    this.setState({
+      listingsData
+    })
+  }
+  change(event){
+    let name = event.target.name;
+    let value = (event.target.type === 'checkbox') ? event.target.value : event.target.value
+    this.setState({
+      [name]: value
+    },() => {
+      console.log(this.state)
+      this.filteredData()
+    })
+  }
+  changeView(viewName){
+    this.setState({
+      view: viewName
+    })
+  }
+
   filteredData(){
     var newData = this.state.listingsData.filter((item) => {
       return item.price >= this.state.min_price && item.price <=
@@ -80,12 +106,60 @@ class App extends React.Component {
       filteredData: newData
     })
   }
+
+  populateForms(){
+    //City
+    let cities = this.state.listingsData.map((item) => {
+      return item.city
+    })
+    cities = new Set(cities) //only unique
+    cities = [...cities]
+
+    cities = cities.sort()
+
+    //homeType
+    let homeTypes = this.state.listingsData.map((item) => {
+      return item.homeType
+    })
+    homeTypes = new Set(homeTypes)
+    homeTypes = [...homeTypes]
+
+    homeTypes = homeTypes.sort()
+
+
+    //Bedrooms
+    let bedrooms = this.state.listingsData.map((item) => {
+      return item.bedrooms
+    })
+    bedrooms = new Set(bedrooms)
+    bedrooms = [...bedrooms]
+
+    this.setState({
+      populateFormsData: {
+        homeTypes,
+        bedrooms,
+        cities
+      }
+    }, () => {
+      console.log(this.state)
+    })
+  }
   render(){
     return (
-      <div className='app'>
+      <div id='content-area'>
+        <HeaderTwo />
 
-
-
+        <Filter
+          change={this.change}
+          globalState={this.state}
+          populateAction = { this.populateForms }
+        />
+        <Listings
+          listingsData={this.state.filteredData}
+          change={this.change}
+          globalState={this.state}
+          changeView={this.changeView}
+        />
       </div>
     );
   }

@@ -1,6 +1,6 @@
 #content-area {
   overflow: auto;
-  // width: 100%;
+  width: 100%;
   min-height: 100%;
   //--code to divide into two columns w/ grid
   // display: grid;
@@ -24,8 +24,6 @@
     padding: 20px;
     // padding: 20px 50px;
     max-width: 300px;
-    border: 1px solid green;
-
   }
   h4 {
     font-size: .9rem;
@@ -77,12 +75,11 @@
 
 
 #listings {
-  width: 100%;
-  border: 1px solid red;
+  width: 70%;
   float: left;
   display: inline-block;
   padding: 15px;
-  background-color:  $offWhite;
+  background-color: $offWhite;
   .search-area {
     input[type='text']{
       width: 70%;
@@ -234,7 +231,7 @@
         .location {
           font-size: 1.2rem;
           display: block;
-          color: $lightGrey;
+          color: $darkGrey;
         }
       }
     }
