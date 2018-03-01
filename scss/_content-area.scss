@@ -1,6 +1,6 @@
 #content-area {
   overflow: auto;
-  width: 100%;
+  // width: 100%;
   min-height: 100%;
   //--code to divide into two columns w/ grid
   // display: grid;
@@ -77,7 +77,7 @@
 
 
 #listings {
-  width: 70%;
+  width: 100%;
   border: 1px solid red;
   float: left;
   display: inline-block;

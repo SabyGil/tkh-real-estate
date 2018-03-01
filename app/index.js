@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 // import App from './App';
-import Full from './containers/Full';
-import '../scss/index.scss';
-import { HashRouter } from 'react-router-dom'
+// import Full from './containers/Full';
+import Routes  from './components/Router';
 
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware } from 'redux';
-import reducers from './reducers';
-import rootReducer from './reducers/index';
+import '../scss/index.scss';
+
+// import { Provider } from 'react-redux';
+// import { createStore, applyMiddleware } from 'redux';
+// import reducers from './reducers';
+// import rootReducer from './reducers/index';
 
 // import reducerContacts from './reducers/reducer_contacts';
 // let store = createStore(reducerContacts);
@@ -17,10 +18,7 @@ import rootReducer from './reducers/index';
 // store={createStoreWithMiddleware(reducers)}
 
 ReactDOM.render(
-
-    <HashRouter>
-      <Full />
-    </HashRouter>,
+      <Routes />,
    document.getElementById('app')
 );
 

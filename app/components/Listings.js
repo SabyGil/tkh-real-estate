@@ -109,9 +109,9 @@ class Listings extends React.Component {
   render(){
     return (
       <div>
-        <HeaderTwo />
+        {/* <HeaderTwo /> */}
         <div id='content-area'>
-        <Filter />
+        {/* <Filter /> */}
         <section id="listings">
           <section className='search-area'>
             <input type='text' name='search'

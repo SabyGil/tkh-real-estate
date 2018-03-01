@@ -2,13 +2,15 @@ import React from 'react';
 // import { Routes } from './components/Router';
 import Routes from './components/Router';
 // import { connect } from 'react-redux';
-// import { Header }  from './components/Header';
+import { Header }  from './components/Header';
+import Home from './components/Home';
+import Listings from './components/Listings';
+import Filter from './components/Filter';
 
 class App extends React.Component {
   constructor () {
     super();
     this.state = {
-      name: 'Joe',
       // listingsData,
       city: 'All',
       homeType: 'All',
@@ -81,20 +83,12 @@ class App extends React.Component {
   render(){
     return (
       <div className='app'>
-        {/* <section id='content-area'>
-          <Filter />
-          <Listings />
-        </section> */}
-        <Routes />
+
+
+
       </div>
     );
   }
 }
-
-// function mapStateToProps(state) {
-//   return {
-//     listings: state.listings
-//   };
-// }
 
 export default App;
