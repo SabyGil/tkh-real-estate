@@ -14,7 +14,7 @@ class HeaderTwo extends React.Component {
       <header>
         <div className="logo">
           <NavLink exact to='/'>
-            Logo
+            LOGO
           </NavLink>
           </div>
 

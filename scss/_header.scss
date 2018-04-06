@@ -1,28 +1,27 @@
-.container {
-  header {
+header {
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  color: white;
+  font-size: 1.5rem;
+  a {
     padding: 20px;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: space-between;
+    text-decoration: none;
     color: white;
-
-    a {
-      padding: 20px;
-      text-decoration: none;
-      color: white;
-    }
-    .left-menu {
-      .logo {
-        display: flex;
-        justify-content: center;
-      }
+  }
+  .left-menu {
+    .logo {
       display: flex;
+      justify-content: center;
     }
-    .right-menu {
-      display: flex;
-    }
+    display: flex;
+  }
+  .right-menu {
+    display: flex;
   }
 }
+
 
 .listings-header {
   header {

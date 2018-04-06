@@ -11,8 +11,9 @@ import listingsData from './components/data/listingsData';
 
 class App extends React.Component {
   constructor () {
-    super();
+  super();
     this.state = {
+      name: 'Joe',
       listingsData,
       city: 'All',
       homeType: 'All',
@@ -57,6 +58,8 @@ class App extends React.Component {
   changeView(viewName){
     this.setState({
       view: viewName
+    }, () => {
+      console.log(this.state.view + ' result')
     })
   }
 

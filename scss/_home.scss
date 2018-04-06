@@ -1,11 +1,11 @@
 .landing-page-bg {
-background:  linear-gradient(135deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) 100%),
-url('https://images.unsplash.com/photo-1489370321024-e0410ad08da4?ixlib=rb-0.3.5&s=9795e789296cd9049afc8abfae0a7bb7&auto=format&fit=crop&w=1050&q=80') no-repeat center center;
--webkit-background-size: cover;
--moz-background-size: cover;
--o-background-size: cover;
-background-size: cover;
-min-height: 100vh;
+  background:  linear-gradient(135deg, rgba(0,0,0,.5) 0%, rgba(0,0,0,.5) 100%),
+  url('https://images.unsplash.com/photo-1489370321024-e0410ad08da4?ixlib=rb-0.3.5&s=9795e789296cd9049afc8abfae0a7bb7&auto=format&fit=crop&w=1050&q=80') no-repeat center center;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  height: 100vh;
   .nav-one {
     display: block;
     border: 1px solid red;
@@ -24,6 +24,9 @@ min-height: 100vh;
       border: none;
       background: gold;
       padding: 10px;
+      color: black;
+      font-weight: 700;
+      cursor: pointer;
     }
   }
 }

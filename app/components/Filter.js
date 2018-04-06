@@ -95,28 +95,6 @@ export default class Filter extends Component {
               value={this.props.globalState.max_floor_space}/>
           </div>
 
-          <div className='filters extras'>
-            <span className='title'>Extras</span>
-            <label htmlFor='extras'>
-              <span>Elevators</span>
-              <input name='elevator' value='elvator' type='checkbox' onChange={this.props.change}/>
-            </label>
-
-            <label htmlFor='extras'>
-             <span>Swimming Pool</span>
-             <input name='swimming_pool' value='swimming-pool' type='checkbox' onChange={this.props.change}/>
-            </label>
-
-            <label htmlFor='extras'>
-              <span>Finished Basement</span>
-              <input name='finished_basement' value='finished-basement' type='checkbox' onChange={this.props.change}/>
-            </label>
-
-            <label htmlFor='extras'>
-              <span>Gym</span>
-              <input name='gym' value='gym' type='checkbox' onChange={this.props.change}/>
-            </label>
-          </div>
         </div>
       </section>
     );
