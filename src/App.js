@@ -1,5 +1,5 @@
 import React from 'react';
-import HeaderTwo   from './components/HeaderTwo';
+import HeaderTwo from './components/HeaderTwo';
 import Home from './components/Home';
 import Listings from './components/Listings';
 import Filter from './components/Filter';
